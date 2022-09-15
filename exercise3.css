@@ -1,0 +1,38 @@
+/* Ashley S. Zheng
+   TCSS460A Summer
+   07/23/2022
+   Eyhab Al-Masri
+ */
+ 
+body {
+	background-color: #FFBBBB;
+	/*width: 1000px;*/
+	float: center;
+	margin: 0 160px;
+	color: #5D3A00;
+	background-image: url('./images/pawpattern.jpg');
+}
+
+.whiteblock {
+	background-color: #FFFFFF;
+}
+
+h1 {
+	color: #684E32;
+	background-color: #FFFFAA;
+	padding: 5px;
+}
+button {
+	background-color: #FFBBBB;
+}
+
+button:hover {
+	background-color: #AAAAAA;
+}
+
+.copyright{
+	background-color: #111;
+	color: #AAA;
+	text-align: center;
+	padding: 5px;
+}

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
+		<meta charset="utf-8">
+		<meta name="author" content="ashley zheng">
+		<meta name="description" content="test the knowledge on apis">
+<title>Exercise 3</title>
+<link href='http://fonts.googleapis.com/css?family=Merriweather' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="exercise3.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cat-fact.herokuapp.com/facts/random?animal_type=cat&amount=1"></script>
+
+</head> 
+<body>
+
+<h1>Cat Time</h1>
+<div class="whiteblock">
+<div class="container">
+	<ul class="nav nav-tabs">
+		<li class="active"><a data-toggle="tab" href="#home">Home</a></li>
+		<li><a data-toggle="tab" href="#menu1">Get Some Pics</a></li>
+		<li><a data-toggle="tab" href="#menu2">Learn Something</a></li>
+	</ul>
+	<div class="tab-content">
+		<div id="home" class="tab-pane fade in active">
+			<h3>HOME</h3>
+			<p>Welcome! Nyanjoy your stay!</p>
+		</div>
+		<div id="menu1" class="tab-pane fade">
+			<h3>Show Me the Fuzz</h3>
+			<p><label for="width">Width (1-1000 pixels)</label><br><input type="number" id="width" name="width" min="1" max="1000" required></p>
+			<p><label for="height">Height (1-1000 pixels)</label><br><input type="number" id="height" name="height" min="1" max="1000" required></p>
+			<p><button id="giveCat">Show a Cat!</button> <button id="remove">Clear</button></p>
+		</div>
+		<div id="menu2" class="tab-pane fade">
+			<h3>Learn something!</h3>
+			<p><button id="giveFact">Tell Me a Fact!</button></p>
+			<div id="tell"></div>
+		</div>
+	</div>
+</div>
+</div>
+<p class='copyright'>All images are copyright to their owners. This is just a hypothetical site 2022 &copy Copyright Cat Time</p>
+</body>
+<script>
+var count = 0;
+var count2 = 0;
+$("#giveCat").on("click", function () {
+	if($("#width").val()==null || $("#height").val()==null || $("#width").val()==0 || $("#height").val()==0){
+		alert("Fill in both dimensions");
+	}
+	else {
+		$("#menu1").append("<img src=\"http://placekitten.com/"+$("#width").val()+"/"+$("#height").val()+"/\">");
+		count++;
+		if(count == 10){
+			$("#menu1").append("<p class=\"concern\">Hey, are you alright?</p>");
+		}
+		if(count == 20){
+			$("#menu1").append("<p class=\"concern\">Seriously, stop.</p>");
+		}
+		if(count == 30){
+			$("#menu1").append("<p class=\"concern\">PLEASE, YOU HAVE SO MUCH MORE TO LIVE FOR!</p>");
+		}
+	}
+});
+$("#remove").on("click", function () {
+	$("img, .concern").remove();
+	count = 0;
+});
+$("#giveFact").click(function(event){
+	count2++;
+	$.getJSON("https://catfact.ninja/fact?max_length=140", function(data){
+		$("#tell").html("<p>"+data.fact+"</p>");
+	});
+	if(count2 == 10){
+		$("#menu2").append("<p class=\"concern\">Whoa, calm down, Lovecraft.</p>");
+	}
+});
+</script>
+</html>
